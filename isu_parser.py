@@ -59,7 +59,7 @@ class ISUParser:
         }
         session.get('https://isu.uust.ru/', params=params, headers=headers)
 
-    def get_all_marks(self):
+    def update_all_marks(self):
         session = self.session
         headers = self.headers
 
@@ -131,7 +131,7 @@ class ISUParser:
         return self.all_marks
 
     def get_semester_marks(self, semester_num: int) -> list:
-        all_semester_marks = self.get_all_marks()
+        all_semester_marks = self.update_all_marks()
         if 1 <= semester_num <= len(all_semester_marks):
             return all_semester_marks[semester_num - 1]
         raise MyError("Указанное количество семестров не соответствует действительности")
